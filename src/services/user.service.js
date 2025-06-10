@@ -62,7 +62,7 @@ exports.add_user = async (payload) => {
   try {
     await connection.beginTransaction(); 
 
-    const hashedPassword = await bcrypt.hash(payload.password, 14);
+    const hashedPassword = await bcrypt.hash(payload.password, parseFloat(process.env.BCRYPT_NUM));
     const sql_add_user = `
       INSERT INTO users (
         username,
